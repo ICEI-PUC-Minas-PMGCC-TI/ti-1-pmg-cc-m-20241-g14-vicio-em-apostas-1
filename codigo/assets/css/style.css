@@ -1,0 +1,75 @@
+label {
+    font-weight: bolder;
+}
+::placeholder {
+    color: lightskyblue !important;
+    opacity: 3;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:  lightskyblue !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:  lightskyblue !important;
+    opacity:  3;
+ }
+#cabecalho{
+  height: 75px;
+  top: 10px;
+  margin-bottom: 10px;
+  background-color: black;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+ h1, h2, h4, h5 {
+  text-align: center;
+  padding-top:15px;
+ }
+.right-corner-button {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  margin-left: 100px; 
+  padding: 5px 10px;
+}
+  
+.logo{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 75px; 
+  height: 75px;
+}
+
+.button{
+  padding: 50px;
+}
+ #msg {
+     height: 60px;
+ }
+ #grid-contatos tbody {
+     cursor: pointer;
+ }
+div.label{
+  color: white;
+}
+#map {  width: 60%;
+  max-width: 70%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  margin-left: 300px;
+ }
+ /*.btn {
+  padding: 10px 20px;
+  background-color: orange;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: darkorange;
+}*/

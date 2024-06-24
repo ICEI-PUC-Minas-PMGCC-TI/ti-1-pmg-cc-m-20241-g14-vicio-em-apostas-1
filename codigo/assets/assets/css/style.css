@@ -1,0 +1,243 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+}
+.interface{
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+#titulo{
+    border-radius: 50%;
+    width: 30em;
+    height: 5em;
+    text-align: center;
+    background-color: rgb(117, 173, 127);
+}
+#nome{
+    margin-top: 0.6em;
+}
+#botoes{
+    display: flex;  
+}
+#bt{
+    padding: 15px;
+}
+#linha{
+    border-top: 1px solid black;
+    margin: 10px 0;
+    width: 100%;
+}
+#perfil1{
+    font-size: 30px;
+    margin: 20px 20px 5px;
+}
+.container img{
+    width: 200px;
+    margin: 20px 30px 10px;
+}
+
+.container h3{
+    color:  rgb(117, 173, 127);
+    margin: 20px 8px 10px;
+}
+
+.container {
+    display: flex;
+}
+.conteudo{
+    flex-grow: 1;
+}
+
+.conteudo p{
+    margin: 20px 8px 10px;
+}
+.conteudo a{
+    margin: 20px 5px 5%;
+}
+
+#Repositorio h3{
+    font-size: 30px;
+    margin: 20px 20px 5px;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+nav ul li{
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a{
+    color:  rgb(117, 173, 127);
+    text-decoration: none;
+
+}
+
+.repositorios p {
+    text-align: center;
+}
+
+.card {
+    color: black;
+    text-decoration: none;
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin: 10px;
+    width: 30%;
+}
+.card a{
+    color: black;
+    text-decoration: none;
+}
+
+/*repositório*/
+.d.secao11 {
+    text-align: left;
+}
+
+.info-repo {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+ul li{
+    display: inline-block;
+  }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+ul li a {
+    text-decoration: none;
+  }
+
+.topicos h4 {
+      display: inline-block;
+      margin: 3px;
+      padding: 2px 3px;
+      background-color:rgb(117, 173, 127);
+      color: #fff;
+      text-decoration: none;
+  }
+
+.name a{
+    color: rgba(3, 44, 5, 0.733);
+    text-decoration: none;
+    font-size: 198%;
+    text-align: left;
+  }
+
+.name{
+    background-color: rgb(117, 173, 127);
+    margin-right:92%;
+    margin-left: 2%; 
+    margin-bottom: 0%;
+
+  }
+
+  header, footer {
+    background-color: #0e2c07;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header div h1{
+    color: rgba(3, 44, 5, 0.733);
+}
+
+ {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .pic-ctn {
+    width: 100vw;
+    height: 200px;
+  }
+  
+  @keyframes display {
+    0% {
+      transform: translateX(200px);
+      opacity: 0;
+    }
+    10% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    20% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    30% {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+  }
+  
+  .pic-ctn {
+    position: relative;
+    width: 10vw;
+    height: 300px;
+    margin-top: 2vh;
+  }
+  
+  .pic-ctn > img {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 100px);
+    opacity: 0;
+    animation: display 10s infinite;
+  }
+  
+  img:nth-child(2) {
+    animation-delay: 2s;
+  }
+  img:nth-child(3) {
+    animation-delay: 4s;
+  }
+  img:nth-child(4) {
+    animation-delay: 6s;
+  }
+  img:nth-child(5) {
+    animation-delay: 8s;
+  }
+  .amigos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .amigo {
+    width: 20%; /* Cada amigo ocupará 45% da largura do contêiner */
+    margin-bottom: 10px; /* Espaçamento inferior entre amigos */
+    text-align: center;
+  }
+  
+  .amigo img {
+    width: 100%; /* A imagem do amigo ocupará toda a largura do contêiner do amigo */
+    max-width: 200px; /* Define a largura máxima da imagem */
+    border-radius: 50%; /* Para tornar a imagem redonda */
+    border: 4px solid #4CAF50; /* Borda verde ao redor da imagem */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Sombra */
+  }
+  
+  .amigo p {
+    color: #4CAF50; /* Cor do texto do nome do amigo */
+    font-weight: bold; /* Texto em negrito */
+  }

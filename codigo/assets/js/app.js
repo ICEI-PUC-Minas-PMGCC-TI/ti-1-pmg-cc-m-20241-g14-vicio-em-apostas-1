@@ -1,11 +1,3 @@
-// Trabalho Interdisciplinar 1 - Aplicações Web
-//
-//
-// Autor: Rommel Vieira Carneiro
-// Data: 03/10/2023
-//modificado por: Bruno Menezes Rodrigues Oliveira Vaz
-//Data:15/05/2024
-
 
 const apiUrl = 'http://localhost:3000/psicologos';//minha api feita no cmd, cosegui rodar a api abindo a pasta onde o projeto está, depois usei o comando json-server --watch db.json para roda-la
 

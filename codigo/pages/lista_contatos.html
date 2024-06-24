@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro de Contatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+
+<body style="background-color:black;">
+    <header id="cabecalho">
+        <img src="OIG3__1_-removebg-preview.png" class="logo" alt="Logo">
+        <h2 style="color: white;">Pesquisa de Psicólogos</h2>
+        <h4 style="color: white;">Encontre sua Clínica!</h4>
+        <a href="index.html"><input type="button" class="btn btn-outline-warning right-corner-button" id="btnClear"
+                value="Cadastro"></a>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 ">
+                <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="msg" class="col-sm-2 offset-sm-10 ">
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="grid-contatos" class="table table-striped" style="color: white;">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Cidade</th>
+                            <th scope="col">Região</th>
+                            <th scope="col">Mapa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-contatos">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        let mapInstances = {};
+        //uso do nominatim pra triangular o cep em coordenadas
+        function geocodeCep(cep, callback) {
+            const url = `https://nominatim.openstreetmap.org/search?format=json&postalcode=${encodeURIComponent(cep)}&country=Brazil`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const coordinates = [data[0].lat, data[0].lon];
+                        callback(null, coordinates);
+                    } else {
+                        callback('Nenhum resultado encontrado');
+                    }
+                })
+                .catch(error => callback(error));
+        }
+        //funçao pra ligar e desligar o mapa
+        function toggleMap(rowId, cep, popupText) {
+            const mapRow = document.getElementById(`map-row-${rowId}`);
+            const mapContainer = document.getElementById(`map-${rowId}`);
+
+            if (mapRow.style.display === 'table-row') {
+                mapRow.style.display = 'none';
+            } else {
+                mapRow.style.display = 'table-row';
+
+                if (!mapInstances[rowId]) {
+                    const map = L.map(mapContainer).setView([-19.912998, -43.940933], 13);
+                    const markers = []; // array para armazenar as coordenadas dos marcadores
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    // geocodifica o CEP específico e adiciona o marcador ao mapa
+                    geocodeCep(cep, function (error, coordinates) {
+                        if (!error) {
+                            markers.push(coordinates); // adiciona as coordenadas ao array de marcadores
+                            L.marker(coordinates).addTo(map)
+                                .bindPopup(`<b>${popupText}</b><br><b>CEP:</b> ${cep}`)
+                                .openPopup();
+
+                            // calcula o centro dos marcadores
+                            const bounds = L.latLngBounds(markers);
+                            map.fitBounds(bounds); // Ajusta a visualização do mapa para conter todos os marcadores
+                        } else {
+                            console.error('Erro de geocodificação:', error);
+                        }
+                    });
+
+                    mapInstances[rowId] = map;
+                } else {
+                    mapInstances[rowId].invalidateSize();
+                }
+            }
+        }
+        //preenche a tabela
+        fetch('http://localhost:3000/psicologos')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('table-contatos');
+                data.forEach((contact, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${contact.nome}</td>
+                        <td>${contact.telefone}</td>
+                        <td>${contact.email}</td>
+                        <td>${contact.cidade}</td>
+                        <td>${contact.regiao}</td>
+                        <td><button class="btn btn-outline-primary" onclick="toggleMap(${index}, '${contact.cep}', '${contact.popup}')">Mapa</button></td>
+                    `;
+                    tableBody.appendChild(row);
+
+                    const mapRow = document.createElement('tr');
+                    mapRow.id = `map-row-${index}`;
+                    mapRow.style.display = 'none';
+                    mapRow.innerHTML = `
+                        <td colspan="7"><div id="map-${index}" style="height: 300px;"></div></td>
+                    `;
+                    tableBody.appendChild(mapRow);
+                });
+            })
+            .catch(error => console.error('Erro ao buscar os dados JSON:', error));
+    </script>
+</body>
+
+</html>

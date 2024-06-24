@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Interativo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Botão para iniciar o chatbot -->
+    <button id="start-chatbot">Iniciar Chatbot</button>
+
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">Chatbot de Ajuda</div>
+        <div class="chatbot-content" id="chatbot-content">
+            <div class="chatbot-message">
+                <span class="chatbot-name">Andrew</span>
+                <div class="typing-indicator">...</div>
+                <div class="chatbot-message-text">
+                    Olá! Meu nome é Andrew. Com o que posso ajudar hoje?
+                </div>
+            </div>
+            <ul class="faq-list" id="faq-list">
+                <li onclick="showResponse('Como utilizar o site?')">Como utilizar o site?</li>
+                <li onclick="showResponse('Como olhar os resultados?')">Como olhar os resultados?</li>
+                <li onclick="showResponse('Como Modifico meu perfil?')">Como Modifico meu perfil?</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

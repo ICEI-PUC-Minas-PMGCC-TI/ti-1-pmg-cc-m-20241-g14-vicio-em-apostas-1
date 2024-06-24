@@ -1,21 +1,5 @@
-// Trabalho Interdisciplinar 1 - Aplicações Web
-//
-// Esse módulo realiza as operações de CRUD a partir de uma API baseada no JSONServer
-// O servidor JSONServer fica hospedado na seguinte URL
-// https://jsonserver.rommelpuc.repl.co/contatos
-//
-// Para fazer o seu servidor, acesse o projeto do JSONServer no Replit, faça o 
-// fork do projeto e altere o arquivo db.json para incluir os dados do seu projeto.
-// URL Projeto JSONServer: https://replit.com/@rommelpuc/JSONServer
-//
-// Autor: Rommel Vieira Carneiro
-// Data: 03/10/2023
-//modificado por: Bruno Menezes Rodrigues Oliveira Vaz
-//Data:15/05/2024
 
-// URL da API JSONServer - Substitua pela URL correta da sua API
-const apiUrl = 'http://localhost:3000/psicologos';//minha api feita no cmd
-//const apiUrl = 'https://jsonserver.rommelpuc.repl.co/contatos'; 
+const apiUrl = 'http://localhost:3000/psicologos';//minha api feita no cmd, cosegui rodar a api abindo a pasta onde o projeto está, depois usei o comando json-server --watch db.json para roda-la
 
 function displayMessage(mensagem) {
     msg = document.getElementById('msg');

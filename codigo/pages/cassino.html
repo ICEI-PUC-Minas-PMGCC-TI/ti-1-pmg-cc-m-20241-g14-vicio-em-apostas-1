@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caça-Níqueis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Caça-Níqueis</h1>
+    <div id="game-container">
+        <div id="slot-container">
+            <div class="slot" id="slot1">⚽</div>
+            <div class="slot" id="slot2">🎰</div>
+            <div class="slot" id="slot3">🍒</div>
+        </div>
+        <div id="controls">
+            <label for="bet">Selecione a aposta:</label>
+            <select id="bet">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <button onclick="girar()">Girar</button>
+            <button onclick="resetar()">Resetar Saldo</button>
+        </div>
+        <p id="balance">Saldo: $<span id="balance-amount">1000</span></p>
+        <p id="result"></p>
+        <p id="payout">Pagamentos:<br>⚽⚽⚽ = 1000x<br>🎰🎰🎰 = 200x<br>🍒🍒🍒 = 100x<br>🏆🏆🏆 = 10x<br>🎖️🎖️🎖️ = 5x<br>🏅🏅🏅 = 3x<br>🥇🥇🥇 = 2x<br>🥈🥈🥈 = 1x</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

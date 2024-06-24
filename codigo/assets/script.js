@@ -1,81 +1,40 @@
-let saldo = 1000;
-const simbolos = [
-    { simbolo: '⚽', valor: 1000 },
-    { simbolo: '🎰', valor: 200 },
-    { simbolo: '🍒', valor: 100 },
-    { simbolo: '🏆', valor: 10 },
-    { simbolo: '🎖️', valor: 5 },
-    { simbolo: '🏅', valor: 3 },
-    { simbolo: '🥇', valor: 2 },
-    { simbolo: '🥈', valor: 1 }
-];
+// Função para mostrar o chatbot quando o botão for clicado
+document.getElementById('start-chatbot').addEventListener('click', function() {
+    document.getElementById('chatbot').style.display = 'block';
+});
 
-const valorTotal = simbolos.reduce((acc, simbolo) => acc + simbolo.valor, 0);
-const probabilidades = simbolos.map(simbolo => simbolo.valor / valorTotal);
+function showResponse(question) {
+    const response = getResponse(question);
 
-const probabilidadesInvertidas = probabilidades.slice().reverse();
+    const chatbotContent = document.getElementById('chatbot-content');
+    const typingIndicator = document.querySelector('.typing-indicator');
 
-const probabilidadesAcumuladas = [];
-let probabilidadeAcumulada = 0;
-for (let probabilidade of probabilidadesInvertidas) {
-    probabilidadeAcumulada += probabilidade;
-    probabilidadesAcumuladas.push(probabilidadeAcumulada);
-}
-
-function girar() {
-    const slots = document.querySelectorAll('.slot');
-    const simbolosExibidos = [];
-    for (let i = 0; i < 3; i++) {
-        const numeroAleatorio = Math.random();
-        let indiceSimbolo = 0;
-        for (let j = 0; j < probabilidadesAcumuladas.length; j++) {
-            if (numeroAleatorio <= probabilidadesAcumuladas[j]) {
-                indiceSimbolo = j;
-                break;
-            }
-        }
-        simbolosExibidos.push(simbolos[indiceSimbolo]);
-    }
-    slots.forEach((slot, index) => {
-        const rotacao = Math.floor(Math.random() * 360);
-        slot.textContent = simbolosExibidos[index].simbolo;
-        slot.style.transform = `rotateX(${rotacao}deg)`;
-    });
-
+    // Simula um atraso para simular o "digitando"
+    typingIndicator.style.display = 'inline';
     setTimeout(() => {
-        slots.forEach(slot => {
-            slot.style.transform = 'rotateX(0deg)';
-        });
-        verificarResultado(simbolosExibidos);
-    }, 1500);
+        typingIndicator.style.display = 'none';
+
+        const newMessage = document.createElement('div');
+        newMessage.className = 'chatbot-message';
+        newMessage.innerHTML = `
+            <div class="chatbot-message">
+                <span class="chatbot-name">Andrew</span>
+                <div class="chatbot-message-text">${response}</div>
+            </div>
+        `;
+        chatbotContent.appendChild(newMessage);
+        chatbotContent.scrollTop = chatbotContent.scrollHeight;
+    }, 1000); // 1 segundo de atraso para simular "digitando"
 }
 
-function verificarResultado(simbolosExibidos) {
-    const simbolosUnicos = new Set(simbolosExibidos.map(simbolo => simbolo.simbolo));
-
-    if (simbolosUnicos.size === 1) {
-        const simbolo = simbolosExibidos[0].simbolo;
-        const multiplicadorPagamento = simbolos.find(s => s.simbolo === simbolo).valor;
-        saldo += parseInt(document.getElementById("bet").value) * multiplicadorPagamento;
-        document.getElementById("result").textContent = `Você ganhou ${multiplicadorPagamento}x sua aposta!`;
-    } else {
-        saldo -= parseInt(document.getElementById("bet").value);
-        document.getElementById("result").textContent = 'Tente novamente!';
+function getResponse(question) {
+    let response = '';
+    if (question === 'Como utilizar o site?') {
+        response = 'Para utilizar o site primeiramente você inicia o seu teste interativo para saber o quão viciado você está em cassino a partir disso o próprio site te mostrará o que deve ser feito.';
+    } else if (question === 'Como olhar os resultados?') {
+        response = 'Basta acessar o perfil no canto superior direito para que, depois que você já tenha feito o teste você verifique seus resultados na aba.';
+    } else if (question === 'Como Modifico meu perfil?') {
+        response = 'Para modificar seu perfil basta entrar no perfil no canto superior direito e clicar em atualizar informações, com isso você atualiza de acordo com os dados que forem pedidos e clique em salvar alterações.';
     }
-
-    atualizarInterface();
+    return response;
 }
-
-function atualizarInterface() {
-    document.getElementById("balance-amount").textContent = saldo;
-}
-
-function resetar() {
-    saldo = 1000;
-    atualizarInterface();
-    document.getElementById("result").textContent = '';
-}
-
-window.onload = function() {
-    atualizarInterface();
-};

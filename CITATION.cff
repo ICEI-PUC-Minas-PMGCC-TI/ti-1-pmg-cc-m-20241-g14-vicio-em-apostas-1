@@ -3,18 +3,16 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Mark da Silva Pinto
+    given-names: Andriel
+  - family-names: Dornas Mendes
+    given-names: Arthur
+  - family-names: Menezes Rodrigues Oliveira Vaz
+    given-names: Bruno
+  - family-names: Xavier Crispi
+    given-names: João Pedro
+  - family-names: Coelho de Melo
+    given-names: Lucas
   - name-suffix: Professor
     affiliation: PUC Minas
     family-names: 

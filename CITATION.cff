@@ -29,12 +29,11 @@ authors:
     affiliation: PUC Minas
     family-names: Vieira Carneiro
     given-names: Rommel
-Rommel
 keywords:
   - Vício
   - Apostas
   - Cassinos online
-repository-code: 
+repository-code: https://github.com/ICEI-PUC-Minas-PMGCC-TI/ti-1-pmg-cc-m-20241-g14-vicio-em-apostas-1
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14

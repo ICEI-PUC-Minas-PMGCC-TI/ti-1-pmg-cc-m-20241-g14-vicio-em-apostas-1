@@ -1,99 +1,152 @@
 label {
     font-weight: bolder;
 }
+
 ::placeholder {
     color: lightskyblue !important;
-    opacity: 3;
-}
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:  lightskyblue !important;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:  lightskyblue !important;
-    opacity:  3;
- }
-#cabecalho{
-  height: 75px;
-  top: 10px;
-  margin-bottom: 10px;
-  background-color: black;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
- h1, h2, h4, h5 {
-  text-align: center;
-  padding-top:15px;
- }
-.right-corner-button {
-  position: absolute;
-  top: 10px;
-  right: 0;
-  margin-left: 100px; 
-  padding: 5px 10px;
-}
-  
-.logo{
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 75px; 
-  height: 75px;
+    opacity: 1; /* corrected opacity value */
 }
 
-.button{
-  padding: 50px;
+::-webkit-input-placeholder {
+    color: lightskyblue !important;
 }
- #msg {
-     height: 60px;
- }
- #grid-contatos tbody {
-     cursor: pointer;
- }
-div.label{
-  color: white;
+
+:-moz-placeholder {
+    color: lightskyblue !important;
+    opacity: 1; /* corrected opacity value */
 }
-#map {  width: 60%;
-  max-width: 70%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  margin-left: 300px;
- }
- /*.btn {
-  padding: 10px 20px;
-  background-color: orange;
-  border: none;
-  color: black;
-  cursor: pointer;
-  font-size: 16px;
+
+#cabecalho {
+    height: 150px;
+    margin-bottom: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px; /* Adicionei padding para espaçamento interno */
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.info li {
+    list-style-type: none;
+    margin-right: 10px; /* Ajustei a margem para melhor espaçamento entre os botões */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px; /* Ajuste o padding conforme desejado */
+    background-color: transparent; /* Cor de fundo transparente */
+    border: 2px solid #007bff; /* Borda azul */
+    color: #007bff; /* Cor do texto azul */
+    text-decoration: none; /* Remover sublinhado padrão */
+    border-radius: 5px; /* Arredondamento dos cantos */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave de cor de fundo e texto */
 }
 
 .btn:hover {
-  background-color: darkorange;
-}*/
-.container {
-  color: white;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.1); /* Cor de fundo suave com transparência */
-  border-radius: 8px; /* Arredondamento das bordas */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave para destacar do fundo */
+    background-color: #007bff; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
 }
 
-.text-center {
-  text-align: center;
+h2, h3, h4, h5 {
+    color: #ffffff; /* Cor do texto branca */
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Cor de fundo suave com transparência */
+    border-radius: 8px; /* Arredondamento das bordas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave para destacar do fundo */
 }
 
 .text-justify {
-  text-align: justify;
-}
-.conteudo {
-  display: none;
+    text-align: justify;
 }
 
-.conteudo:target {
-  display: block;
+.carrosel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.carousel {
+    max-width: 1240px;
+    height: 700px;
+    margin: 0 auto;
+    overflow: hidden; /* Evita que a borda ultrapasse o carrossel */
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço do item do carrossel */
+}
+
+footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Cor de fundo do rodapé */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+footer p {
+    margin: 0;
+    color: #ffffff; /* Cor do texto branca */
+}
+
+@media (max-width: 768px) {
+    #cabecalho {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+
+    .info li {
+        margin-bottom: 10px;
+    }
+}
+#menutoggle{
+    display: none;
+}
+
+.menu-icon{
+    display: none;
 }

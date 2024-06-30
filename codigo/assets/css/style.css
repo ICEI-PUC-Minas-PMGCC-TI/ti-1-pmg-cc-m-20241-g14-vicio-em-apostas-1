@@ -61,4 +61,39 @@ div.label{
   background-color: black;
   margin-left: 300px;
  }
+ /*.btn {
+  padding: 10px 20px;
+  background-color: orange;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+}
 
+.btn:hover {
+  background-color: darkorange;
+}*/
+.container {
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1); /* Cor de fundo suave com transparência */
+  border-radius: 8px; /* Arredondamento das bordas */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave para destacar do fundo */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+.conteudo {
+  display: none;
+}
+
+.conteudo:target {
+  display: block;
+}

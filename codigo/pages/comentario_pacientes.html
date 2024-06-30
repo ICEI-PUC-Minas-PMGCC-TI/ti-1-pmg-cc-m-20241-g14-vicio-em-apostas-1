@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script type="text/javascript" src="comentclient.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Feedback</title>
+</head>
+<body>
+    <div id="titulodapagina">
+        <h1>Página de Feedback</h1>
+    </div>
+    <div id="Feedback"></div>
+    <div id="editformcontainer" style="display: none;">
+        <form id="editcommentForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nomeedit" name="nome" required>
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidadeedit" name="cidade" required>
+            <label for="comentario">Comentário:</label>
+            <textarea id="comentarioedit" name="comentario" required></textarea>
+            <button onclick=editcomment(event)>Editar</button>
+        </form>
+    </div>
+    
+    <button id="addCommentBtn" onclick=showCommentForm()>Adicionar Comentário</button>
+    <div id="commentFormContainer" style="display: none;">
+        <form id="commentForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required>
+            <label for="comentario">Comentário:</label>
+            <textarea id="comentario" name="comentario" required></textarea>
+            <button onclick=addComment(event)>Enviar</button>
+        </form>
+    </div>   
+
+</body>
+</html>
+
+

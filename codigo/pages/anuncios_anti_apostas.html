@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Anúncios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Anúncios</h1>
+        <form id="adForm">
+            <label for="title">Título do Anúncio:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Descrição:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="link">Link:</label>
+            <input type="url" id="link" name="link" required>
+
+            <label for="image">Imagem:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <button type="submit">Cadastrar Anúncio</button>
+        </form>
+        <h2>Anúncios Cadastrados</h2>
+        <div id="adsContainer"></div>
+        <button id="clearAdsButton">Limpar Anúncios</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+{
+    "html": {
+      "!doctype": "html",
+      "html": {
+        "lang": "pt-br",
+        "head": {
+          "meta": [
+            { "charset": "UTF-8" },
+            { "name": "viewport", "content": "width=device-width, initial-scale=1.0" }
+          ],
+          "title": "Cadastro de Anúncios",
+          "link": { "rel": "stylesheet", "href": "styles.css" }
+        },
+        "body": {
+          "div": {
+            "class": "container",
+            "h1": "Cadastro de Anúncios",
+            "form": {
+              "id": "adForm",
+              "label": [
+                { "for": "title", "text": "Título do Anúncio:" },
+                { "for": "description", "text": "Descrição:" },
+                { "for": "link", "text": "Link:" },
+                { "for": "image", "text": "Imagem:" }
+              ],
+              "input": [
+                { "type": "text", "id": "title", "name": "title", "required": true },
+                { "type": "textarea", "id": "description", "name": "description", "required": true },
+                { "type": "url", "id": "link", "name": "link", "required": true },
+                { "type": "file", "id": "image", "name": "image", "accept": "image/*", "required": true }
+              ],
+              "button": { "type": "submit", "text": "Cadastrar Anúncio" }
+            },
+            "h2": "Anúncios Cadastrados",
+            "div#adsContainer": {}
+          },
+          "script": { "src": "script.js" }
+        }
+      }
+    },
+    "css": {
+      "body": {
+        "font-family": "Arial, sans-serif",
+        "background-color": "#f0f0f0",
+        "padding": "20px"
+      },
+      ".container": {
+        "background-color": "#fff",
+        "padding": "20px",
+        "border-radius": "5px",
+        "box-shadow": "0 0 10px rgba(0, 0, 0, 0.1)"
+      },
+      "h1, h2": { "color": "#333" },
+      "form": { "margin-bottom": "20px" },
+      "label": {
+        "display": "block",
+        "margin-bottom": "5px",
+        "font-weight": "bold"
+      },
+      "input[type='text'], input[type='url'], input[type='file'], textarea": {
+        "width": "100%",
+        "padding": "8px",
+        "margin-bottom": "10px",
+        "border": "1px solid #ccc",
+        "border-radius": "4px"
+      },
+      "button": {
+        "background-color": "#007bff",
+        "color": "#fff",
+        "border": "none",
+        "padding": "10px 20px",
+        "border-radius": "4px",
+        "cursor": "pointer"
+      },
+      "button:hover": { "background-color": "#0056b3" },
+      "#adsContainer .ad": {
+        "border": "1px solid #ccc",
+        "padding": "10px",
+        "border-radius": "4px",
+        "margin-bottom": "10px",
+        "background-color": "#fafafa"
+      },
+      "#adsContainer .ad h3": { "margin": "0" },
+      "#adsContainer .ad p": { "margin": "5px 0" },
+      "#adsContainer .ad img": {
+        "margin-top": "10px",
+        "max-width": "100%",
+        "height": "auto"
+      }
+    },
+    "javascript": {
+      "eventListener": {
+        "target": "adForm",
+        "event": "submit",
+        "function": {
+          "preventDefault": true,
+          "variables": {
+            "title": { "getElementById": "title" },
+            "description": { "getElementById": "description" },
+            "link": { "getElementById": "link" },
+            "imageFile": { "getElementById": "image", "files": [0] }
+          },
+          "if": {
+            "condition": "!imageFile",
+            "then": {
+              "alert": "Por favor, selecione uma imagem."
+            }
+          },
+          "FileReader": {
+            "onload": {
+              "target": "result",
+              "variables": {
+                "imageUrl": { "event": "target" }
+              },
+              "adContainer": { "getElementById": "adsContainer" },
+              "adElement": { "createElement": "div", "classList": ["ad"] },
+              "adTitle": { "createElement": "h3", "textContent": "title" },
+              "adDescription": { "createElement": "p", "textContent": "description" },
+              "adLink": {
+                "createElement": "a",
+                "href": "link",
+                "textContent": "Clique aqui para mais detalhes",
+                "target": "_blank"
+              },
+              "adImage": { "createElement": "img", "src": "imageUrl", "alt": "title" },
+              "appendChild": [
+                "adTitle",
+                "adDescription",
+                "adLink",
+                "adImage"
+              ],
+              "adContainer.appendChild": "adElement",
+              "getElementById": "adForm",
+              "reset": true
+            },
+            "readAsDataURL": "imageFile"
+          }
+        }
+      }
+    }
+  }
+  

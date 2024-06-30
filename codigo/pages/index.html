@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro de Contatos de Pacientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="init()" style="background-color: black">
+<img src="imagem1111.png" class="logo">
+    <h1>Cadastro de Pacientes</h1>
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 ">
+                <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
+            </div>
+        </div>
+
+        <form id="form-contato">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label for="inputNome" style="color: white">Nome(*)</label>
+                    <input type="text" class="form-control" id="inputNome" placeholder="Nome" disabled>
+                </div>
+                <div class="col-sm-8">
+                    <label for="inputSobrenome" style="color: white">Sobrenome(*)</label">
+                    <input type="text" class="form-control" id="inputSobrenome" required placeholder="Sobrenome">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-5">
+                    <label for="inputNumerodeContato" style="color: white">Número de Contato (*)</label>
+                    <input type="text" class="form-control" id="inputNumerodecontato" required placeholder="Telefone">
+                </div>
+                <div class="col-sm-7">
+                    <label for="inputEmail" style="color: white">E-mail (*)</label>
+                    <input type="email" class="form-control" id="inputEmail" required placeholder="Informe o e-mail">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="inputFrequenciadeapostas" style="color: white">Frequência de apostas(*)</label>
+                    <input type="text" class="form-control" id="inputFrequenciadeapostas" placeholder="Informe quantos dias por semana" >
+                </div>
+                <div class="col-sm-6">
+                    <label for="inputCategoria" style="color: white">Total de dinheiro apostado(*)</label>
+                    <input type="text" class="form-control" id="inputCategoria" required placeholder="Informe o valor em reais(R$)">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <small style="color: white">(*) Campos obrigatórios</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <input type="button" class="btn btn-outline-light" id="btnInsert" value="Inserir" style="margin-right: 80px; margin-left: 100px;">
+                    <input type="button" class="btn btn-outline-primary" id="btnUpdate" value="Alterar" style=" margin-right: 80px; margin-left: 100px;">
+                    <input type="button" class="btn btn-outline-danger" id="btnDelete" value="Excluir" style="margin-right: 80px; margin-left: 100px;">
+                    <input type="button" class="btn btn-outline-info" id="btnClear" value="Limpar Form" style="margin-right: 80px; margin-left: 100px;">
+                    
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="grid-contatos" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="color: white">#</th>
+                            <th scope="col" style="color: white">Nome</th>
+                            <th scope="col" style="color: white">Telefone</th>
+                            <th scope="col" style="color: white">E-mail</th>
+                            <th scope="col" style="color: white">Cidade</th>
+                            <th scope="col" style="color: white">Categoria</th>
+                            <th scope="col" style="color: white">Site</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-contatos">
+                        <tr>
+                            <td scope="row">1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function exibeContatos() {
+            tableContatos = document.getElementById("table-contatos");
+
+            // Remove todas as linhas do corpo da tabela
+            tableContatos.innerHTML = "";
+
+            readContato (dados => {
+                // Popula a tabela com os registros do banco de dados
+                for (i = 0; i < dados.length; i++) {
+                    let contato = dados[i];    
+                    tableContatos.innerHTML += `<tr><td scope="row">${contato.nome}</td>
+                                                    <td>${contato.sobrenome}</td>
+                                                    <td>${contato.telefone}</td>
+                                                    <td>${contato.email}</td>
+                                                    <td>${contato.frequenciadeapostas}</td>
+                                                    <td>${contato.totaldedinheiroapostado}</td>
+                                                    
+                                                </tr>`;
+                }
+            })
+        }
+
+        function init() {
+            // Define uma variável para o formulário de contato
+            formContato = document.getElementById("form-contato");
+
+            // Adiciona funções para tratar os eventos 
+            btnInsert = document.getElementById("btnInsert");
+            btnInsert.addEventListener ('click', function () {
+                // Verifica se o formulário está preenchido corretamente
+                if (!formContato.checkValidity()) {
+                    displayMessage("Preencha o formulário corretamente.");
+                    return;
+                }
+
+                // Obtem os valores dos campos do formulário
+                let campoNome = document.getElementById ('inputNome').value;
+                let campoTelefone = document.getElementById ('inputTelefone').value;
+                let campoEmail = document.getElementById ('inputEmail').value;
+                let campoCidade = document.getElementById ('inputCidade').value;
+                let campoCategoria = document.getElementById ('inputCategoria').value;
+                let campoSite = document.getElementById ('inputSite').value;
+
+                // Cria um objeto com os dados do contato
+                let contato = { nome: campoNome, 
+                    telefone: campoTelefone, 
+                    email: campoEmail, 
+                    cidade: campoCidade, 
+                    categoria: campoCategoria,
+                    website: campoSite };
+
+                // Cria o contato no banco de dados
+                createContato(contato, exibeContatos);
+
+                // Limpa o formulario
+                formContato.reset()
+            });
+
+            // Trata o click do botão Alterar
+            btnUpdate = document.getElementById("btnUpdate");
+            btnUpdate.addEventListener ('click', function () {
+                // Obtem os valores dos campos do formulário
+                let campoId = document.getElementById("inputId").value;
+                if (campoId == "") {
+                    displayMessage("Selecione antes um contato para ser alterado.");
+                    return;
+                }
+
+                // Obtem os valores dos campos do formulário
+                let campoNome = document.getElementById('inputNome').value;
+                let campoTelefone = document.getElementById('inputTelefone').value;
+                let campoEmail = document.getElementById('inputEmail').value;
+                let campoCidade = document.getElementById('inputCidade').value;
+                let campoCategoria = document.getElementById('inputCategoria').value;
+                let campoSite = document.getElementById('inputSite').value;
+                
+                // Cria um objeto com os dados do contato
+                let contato = { nome: campoNome, 
+                    telefone: campoTelefone, 
+                    email: campoEmail, 
+                    frequenciadeapostas: campoFrequenciaemaposta, 
+                    totaldedinheiroapostado: campoDinheiroapostado,
+                    sobrenome: campoSobrenome };
+
+                // Altera o contato no banco de dados
+                updateContato(parseInt(campoNome), contato, exibeContatos);
+
+                // Limpa o formulario
+                formContato.reset()
+            });
+
+            // Trata o click do botão Excluir
+            btnDelete = document.getElementById('btnDelete');
+            btnDelete.addEventListener ('click', function () {
+                let campoId = document.getElementById('inputId').value;
+                if (campoId == "") {
+                    displayMessage("Selecione um contato a ser excluído.");
+                    return;
+                }
+
+                // Exclui o contato no banco de dados
+                deleteContato(parseInt(campoId), exibeContatos);
+
+                // Limpa o formulario
+                formContato.reset()
+            });
+
+            // Trata o click do botão Listar Contatos
+            btnClear = document.getElementById('btnClear');
+            btnClear.addEventListener ('click', function () {                
+                formContato.reset()
+            });
+
+            // Oculta a mensagem de aviso após alguns 5 segundos
+            msg = document.getElementById('msg');
+            msg.addEventListener ("DOMSubtreeModified", function (e) {
+                if (e.target.innerHTML == "") return;
+                setTimeout (function () {
+                    alert = msg.getElementsByClassName("alert");
+                    alert[0].remove();
+                }, 5000);
+            })
+
+            // Preenche o formulário quando o usuario clicar em uma linha da tabela 
+            gridContatos = document.getElementById("grid-contatos");
+            gridContatos.addEventListener('click', function (e) {
+                if (e.target.tagName == "TD") { 
+
+                    // Obtem as colunas da linha selecionada na tabela
+                    let linhaContato = e.target.parentNode;
+                    colunas = linhaContato.querySelectorAll("td");
+                    
+                    // Preenche os campos do formulário com os dados da linha selecionada na tabela
+                    document.getElementById ('inputId').value = colunas[0].innerText;
+                    document.getElementById ('inputNome').value = colunas[1].innerText;
+                    document.getElementById ('inputTelefone').value = colunas[2].innerText;
+                    document.getElementById ('inputEmail').value = colunas[3].innerText;
+                    document.getElementById ('inputCidade').value = colunas[4].innerText;
+                    document.getElementById ('inputCategoria').value = colunas[5].innerText;
+                    document.getElementById ('inputSite').value = colunas[6].innerText;
+                }
+            });
+
+            exibeContatos();
+        }
+    </script>
+</body>
+
+</html>

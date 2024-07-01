@@ -1,11 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Anúncios</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000000;
+        padding: 20px;
+    }
+    
+    .container {
+        background-color: #2e2e2e;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1, h2 {
+        color: #817d7d;
+    }
+    
+    form {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    input[type="text"], input[type="url"], input[type="file"], textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    #adsContainer .ad {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        background-color: #fafafa;
+    }
+    
+    #adsContainer .ad h3 {
+        margin: 0;
+    }
+    
+    #adsContainer .ad p {
+        margin: 5px 0;
+    }
+    
+    #adsContainer .ad img {
+        margin-top: 10px;
+        max-width: 100%;
+        height: auto;
+    }
+    #clearAdsButton {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    
+    #clearAdsButton:hover {
+        background-color: #c82333;
+    }
+    
+    
+    </style>
+
 <body>
     <div class="container">
         <h1>Cadastro de Anúncios</h1>

@@ -7,12 +7,318 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Desbloqueio Vicioso</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="trabalho.css">
-</head>
+    <link rel="stylesheet" href="css/style.css">
 
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+    label {
+    font-weight: bolder;
+}
+
+::placeholder {
+    color: lightskyblue !important;
+    opacity: 1; /* corrected opacity value */
+}
+
+::-webkit-input-placeholder {
+    color: lightskyblue !important;
+}
+
+:-moz-placeholder {
+    color: lightskyblue !important;
+    opacity: 1; /* corrected opacity value */
+}
+
+#cabecalho {
+    height: 150px;
+    margin-bottom: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px; /* Adicionei padding para espaçamento interno */
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.info li {
+    list-style-type: none;
+    margin-right: 10px; /* Ajustei a margem para melhor espaçamento entre os botões */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px; /* Ajuste o padding conforme desejado */
+    background-color: transparent; /* Cor de fundo transparente */
+    border: 2px solid #007bff; /* Borda azul */
+    color: #007bff; /* Cor do texto azul */
+    text-decoration: none; /* Remover sublinhado padrão */
+    border-radius: 5px; /* Arredondamento dos cantos */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave de cor de fundo e texto */
+}
+
+.btn:hover {
+    background-color: #007bff; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+}
+
+h2, h3, h4, h5 {
+    color: #ffffff; /* Cor do texto branca */
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Cor de fundo suave com transparência */
+    border-radius: 8px; /* Arredondamento das bordas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave para destacar do fundo */
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.carrosel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.carousel {
+    max-width: 1240px;
+    height: 700px;
+    margin: 0 auto;
+    overflow: hidden; /* Evita que a borda ultrapasse o carrossel */
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço do item do carrossel */
+}
+
+footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Cor de fundo do rodapé */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+footer p {
+    margin: 0;
+    color: #ffffff; /* Cor do texto branca */
+}
+
+@media (max-width: 768px) {
+    #cabecalho {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+
+    .info li {
+        margin-bottom: 10px;
+    }
+}
+#menutoggle{
+    display: none;
+}
+
+.menu-icon{
+    display: none;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000000;
+    color: #fffdfd;
+    line-height: 1.6;
+}
+
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #000000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+section h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#Feedback {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 2%;
+}
+
+.card {
+    background: #000000;
+    border: 1px solid #ff0000;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 20px); /* Flex grow, flex shrink, and base width */
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+footer {
+
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+#addCommentBtn, .deletareditar {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#addCommentBtn:hover, .deletareditar:hover {
+    background-color: #ff0000;
+}
+
+#commentFormContainer {
+    margin-top: 20px;
+}
+
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #000000;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#commentForm input,
+#commentForm textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+#commentForm button {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#commentForm button:hover {
+    background-color: #ff0000;
+}
+
+.carousel-item img {
+            max-width: 100%; /* Largura máxima igual à largura do carousel */
+            height: auto; /* Altura automática proporcional à largura */
+            object-fit: contain; /* Preserva a proporção e ajusta dentro do container */
+        }
+
+</style>
 <body onload="init()"style="background-color: black;">
     <header id="cabecalho">
-        <img src="OIG3__1_-removebg-preview.png" class="logo" alt="Logo">
+        <img src="assets/images/OIG3__1_-removebg-preview.png" class="logo" alt="Logo">
         <h2>Desbloqueio Vicioso</h2>
         <nav>
             <ul class="info">
@@ -27,24 +333,17 @@
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="2000">
-                    <img src="OIG3__1_-removebg-preview.png" class="d-block w-100" alt="Logo">
+                    <img src="assets/images/OIG3__1_-removebg-preview.png" class="d-block w-100" alt="Logo">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Logo</h5>
                         <p>Descrição da imagem do logo.</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
-                    <img src="teste.webp" class="d-block w-100" alt="Imagem teste">
+                    <img src="assets/images/OIG3__1_-removebg-preview.png" class="d-block w-100" alt="Imagem teste">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Imagem Teste</h5>
                         <p>Descrição da imagem teste.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Título da Imagem</h5>
-                        <p>Descrição da imagem.</p>
                     </div>
                 </div>
             </div>

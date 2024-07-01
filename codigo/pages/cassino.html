@@ -7,6 +7,71 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <style>
+           body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #game-container {
+            text-align: center;
+        }
+
+        .slot {
+            font-size: 3rem;
+            margin: 10px;
+        }
+
+        #controls {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: black;
+            color: green;
+            border: 2px solid green;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: green;
+            color: black;
+        }
+
+        select {
+            background-color: black;
+            color: white;
+            border: 2px solid green;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        #balance {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        #payout {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            margin-top: -350px; /* Adiciona uma margem negativa para mover o título para cima */
+        }
+    </style>
     <h1>Caça-Níqueis</h1>
     <div id="game-container">
         <div id="slot-container">
@@ -27,11 +92,97 @@
             </select>
             <button onclick="girar()">Girar</button>
             <button onclick="resetar()">Resetar Saldo</button>
+            <button><a href="lista_contatos.html">Diagnóstico</a></button>
         </div>
         <p id="balance">Saldo: $<span id="balance-amount">1000</span></p>
         <p id="result"></p>
         <p id="payout">Pagamentos:<br>⚽⚽⚽ = 1000x<br>🎰🎰🎰 = 200x<br>🍒🍒🍒 = 100x<br>🏆🏆🏆 = 10x<br>🎖️🎖️🎖️ = 5x<br>🏅🏅🏅 = 3x<br>🥇🥇🥇 = 2x<br>🥈🥈🥈 = 1x</p>
     </div>
     <script src="script.js"></script>
+    <script>
+let saldo = 1000;
+let contadorGirar = localStorage.getItem('contadorGirar') ? parseInt(localStorage.getItem('contadorGirar')) : 0;
+        let contadorResetar = localStorage.getItem('contadorResetar') ? parseInt(localStorage.getItem('contadorResetar')) : 0;
+const simbolos = [
+    { simbolo: '⚽', valor: 1000 },
+    { simbolo: '🎰', valor: 200 },
+    { simbolo: '🍒', valor: 100 },
+    { simbolo: '🏆', valor: 10 },
+    { simbolo: '🎖️', valor: 5 },
+    { simbolo: '🏅', valor: 3 },
+    { simbolo: '🥇', valor: 2 },
+    { simbolo: '🥈', valor: 1 }
+];
+const valorTotal = simbolos.reduce((acc, simbolo) => acc + simbolo.valor, 0);
+const probabilidades = simbolos.map(simbolo => simbolo.valor / valorTotal);
+const probabilidadesInvertidas = probabilidades.slice().reverse();
+
+const probabilidadesAcumuladas = [];
+let probabilidadeAcumulada = 0;
+for (let probabilidade of probabilidadesInvertidas) {
+    probabilidadeAcumulada += probabilidade;
+    probabilidadesAcumuladas.push(probabilidadeAcumulada);
+}
+
+function girar() {
+    contadorGirar++;
+    localStorage.setItem('contadorGirar', contadorGirar);
+    const slots = document.querySelectorAll('.slot');
+    const simbolosExibidos = [];
+    for (let i = 0; i < 3; i++) {
+        const numeroAleatorio = Math.random();
+        let indiceSimbolo = 0;
+        for (let j = 0; j < probabilidadesAcumuladas.length; j++) {
+            if (numeroAleatorio <= probabilidadesAcumuladas[j]) {
+                indiceSimbolo = j;
+                break;
+            }
+        }
+        simbolosExibidos.push(simbolos[indiceSimbolo]);
+    }
+    slots.forEach((slot, index) => {
+        const rotacao = Math.floor(Math.random() * 360);
+        slot.textContent = simbolosExibidos[index].simbolo;
+        slot.style.transform = `rotateX(${rotacao}deg)`;
+    });
+    setTimeout(() => {
+        slots.forEach(slot => {
+            slot.style.transform = 'rotateX(0deg)';
+        });
+        verificarResultado(simbolosExibidos);
+    }, 1500);
+}
+
+function verificarResultado(simbolosExibidos) {
+    const simbolosUnicos = new Set(simbolosExibidos.map(simbolo => simbolo.simbolo));
+
+    if (simbolosUnicos.size === 1) {
+        const simbolo = simbolosExibidos[0].simbolo;
+        const multiplicadorPagamento = simbolos.find(s => s.simbolo === simbolo).valor;
+        saldo += parseInt(document.getElementById("bet").value) * multiplicadorPagamento;
+        document.getElementById("result").textContent = `Você ganhou ${multiplicadorPagamento}x sua aposta!`;
+    } else {
+        saldo -= parseInt(document.getElementById("bet").value);
+        document.getElementById("result").textContent = 'Tente novamente!';
+    }
+    atualizarInterface();
+}
+
+function atualizarInterface() {
+    document.getElementById("balance-amount").textContent = saldo;
+}
+
+function resetar() {
+    contadorResetar++;
+    localStorage.setItem('contadorResetar', contadorResetar);
+    saldo = 1000;
+    atualizarInterface();
+    document.getElementById("result").textContent = '';
+}
+
+window.onload = function() {
+    atualizarInterface();
+};
+    </script>
 </body>
 </html>

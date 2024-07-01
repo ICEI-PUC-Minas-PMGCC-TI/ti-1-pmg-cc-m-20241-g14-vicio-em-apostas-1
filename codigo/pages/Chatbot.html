@@ -4,10 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Interativo</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .login-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #4CAF50;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .login-btn:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+        .chatbot {
+            display: none;
+            position: relative;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #333;
+            color: #fff;
+            overflow: hidden;
+        }
+        .chatbot-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .chatbot-content {
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .chatbot-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .chatbot-content li {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            background-color: #444;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .chatbot-content li:hover {
+            background-color: #555;
+        }
+        .chatbot-message {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #444;
+            margin-top: 10px;
+        }
+        .chatbot-message .chatbot-name {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .typing-indicator {
+            display: none;
+            animation: typing 1s infinite alternate;
+            font-style: italic;
+            color: #4CAF50;
+        }
+        @keyframes typing {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        #start-chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            margin: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #start-chatbot:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
+    <a href="login.html" class="login-btn">Login</a>
 
     <!-- Botão para iniciar o chatbot -->
     <button id="start-chatbot">Iniciar Chatbot</button>
@@ -29,7 +141,48 @@
             </ul>
         </div>
     </div>
+    
+    <script>
+        // Função para mostrar o chatbot quando o botão for clicado
+        document.getElementById('start-chatbot').addEventListener('click', function() {
+            document.getElementById('chatbot').style.display = 'block';
+        });
 
-    <script src="script.js"></script>
+        function showResponse(question) {
+            const response = getResponse(question);
+
+            const chatbotContent = document.getElementById('chatbot-content');
+            const typingIndicator = document.querySelector('.typing-indicator');
+
+            // Simula um atraso para simular o "digitando"
+            typingIndicator.style.display = 'inline';
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+
+                const newMessage = document.createElement('div');
+                newMessage.className = 'chatbot-message';
+                newMessage.innerHTML = `
+                    <div class="chatbot-message">
+                        <span class="chatbot-name">Andrew</span>
+                        <div class="chatbot-message-text">${response}</div>
+                    </div>
+                `;
+                chatbotContent.appendChild(newMessage);
+                chatbotContent.scrollTop = chatbotContent.scrollHeight;
+            }, 1000); // 1 segundo de atraso para simular "digitando"
+        }
+
+        function getResponse(question) {
+            let response = '';
+            if (question === 'Como utilizar o site?') {
+                response = 'Para utilizar o site primeiramente você inicia o seu teste interativo para saber o quão viciado você está em cassino a partir disso o próprio site te mostrará o que deve ser feito.';
+            } else if (question === 'Como olhar os resultados?') {
+                response = 'Basta acessar o perfil no canto superior direito para que, depois que você já tenha feito o teste você verifique seus resultados na aba.';
+            } else if (question === 'Como Modifico meu perfil?') {
+                response = 'Para modificar seu perfil basta entrar no perfil no canto superior direito e clicar em atualizar informações, com isso você atualiza de acordo com os dados que forem pedidos e clique em salvar alterações.';
+            }
+            return response;
+        }
+    </script>
 </body>
 </html>

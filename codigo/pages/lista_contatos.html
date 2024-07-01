@@ -13,105 +13,384 @@
 </head>
 
 <body style="background-color:black;">
+    <style>
+        label {
+    font-weight: bolder;
+}
+.logo {
+            width: 100px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
+        }
+::placeholder {
+    color: lightskyblue !important;
+    opacity: 1; /* corrected opacity value */
+}
+
+::-webkit-input-placeholder {
+    color: lightskyblue !important;
+}
+
+:-moz-placeholder {
+    color: lightskyblue !important;
+    opacity: 1; /* corrected opacity value */
+}
+
+#cabecalho {
+    height: 150px;
+    margin-bottom: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px; /* Adicionei padding para espaçamento interno */
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.info li {
+    list-style-type: none;
+    margin-right: 10px; /* Ajustei a margem para melhor espaçamento entre os botões */
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px; /* Ajuste o padding conforme desejado */
+    background-color: transparent; /* Cor de fundo transparente */
+    border: 2px solid #007bff; /* Borda azul */
+    color: #007bff; /* Cor do texto azul */
+    text-decoration: none; /* Remover sublinhado padrão */
+    border-radius: 5px; /* Arredondamento dos cantos */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave de cor de fundo e texto */
+}
+
+.btn:hover {
+    background-color: #007bff; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+}
+
+h2, h3, h4, h5 {
+    color: #ffffff; /* Cor do texto branca */
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Cor de fundo suave com transparência */
+    border-radius: 8px; /* Arredondamento das bordas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave para destacar do fundo */
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.carrosel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.carousel {
+    max-width: 1240px;
+    height: 700px;
+    margin: 0 auto;
+    overflow: hidden; /* Evita que a borda ultrapasse o carrossel */
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço do item do carrossel */
+}
+
+footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Cor de fundo do rodapé */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+footer p {
+    margin: 0;
+    color: #ffffff; /* Cor do texto branca */
+}
+
+@media (max-width: 768px) {
+    #cabecalho {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .info {
+        flex-direction: column;
+    }
+
+    .info li {
+        margin-bottom: 10px;
+    }
+}
+#menutoggle{
+    display: none;
+}
+
+.menu-icon{
+    display: none;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000000;
+    line-height: 1.6;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background: #000000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+section h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#Feedback {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 2%;
+}
+
+.card {
+    background: #000000;
+    border: 1px solid #ff0000;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 20px); /* Flex grow, flex shrink, and base width */
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+#addCommentBtn, .deletareditar {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#addCommentBtn:hover, .deletareditar:hover {
+    background-color: #ff0000;
+}
+
+#commentFormContainer {
+    margin-top: 20px;
+}
+
+#commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #000000;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#commentForm input,
+#commentForm textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+#commentForm button {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#commentForm button:hover {
+    background-color: #ff0000;
+}
+
+    </style>
     <header id="cabecalho">
-        <img src="OIG3__1_-removebg-preview.png" class="logo" alt="Logo">
+        <img src="../assets/images/OIG3__1_-removebg-preview.png" class="logo" alt="Logo">
         <h2 style="color: white;">Seu diagnóstico</h2>
         <h4 style="color: white;">Por favor considere também sempre buscar ajuda profissional</h4>
         <a href="index.html"><input type="button" class="btn btn-outline-warning right-corner-button" id="btnClear"
                 value="Voltar"></a>
     </header>
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Leve</h2>
         <div class="text-justify" class="conteudo">
-            <h5>
-                O vício em apostas pode começar de maneira sutil, muitas vezes passando despercebido até que se torne um
-                problema maior. Se você percebe que está apostando mais do que deveria ou que isso está afetando outros
-                aspectos da sua vida, é importante tomar medidas para controlar esse hábito.<br><br>
-
-                Apostar pode ser uma forma de entretenimento, mas deve ser feito com responsabilidade. Defina limites
-                claros para o tempo e o dinheiro que você gasta com apostas. Mantenha um diário de suas apostas para ter
-                uma visão clara de quanto está investindo e procure alternativas saudáveis para ocupar seu tempo, como
-                hobbies, exercícios físicos ou atividades sociais.<br><br>
-
-                Lembre-se, é fundamental buscar apoio se sentir que está perdendo o controle. Conversar com amigos,
-                familiares ou até mesmo procurar ajuda profissional pode ser um passo importante para garantir que o
-                hábito de apostar não se torne um problema sério. Mantenha o equilíbrio e aposte com responsabilidade!<br><br>
-            </h5>
+            <h5 id="diagnostico" style="color: white;"></h5>
         </div>
     </div>
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Intermediário</h2>
         <div class="text-justify" class="conteudo">
-            <h5>
-                Se você está em um estágio intermediário de vício em apostas, pode ser que já tenha percebido algumas
-                consequências negativas em sua vida. Talvez tenha começado a esconder suas apostas dos outros, gastando
-                mais tempo e dinheiro do que pretendia, ou mesmo se endividando.<br><br>
-
-                Neste ponto, é crucial reconhecer que o vício em apostas é um problema sério que precisa ser abordado.
-                Aqui estão algumas estratégias para ajudar a gerenciar esse vício:<br><br>
-
-                Estabeleça Limites Rígidos: Defina um orçamento claro para suas apostas e nunca ultrapasse esse limite.
-                Use apenas dinheiro que você pode perder sem causar prejuízo financeiro.<br><br>
-
-                Desenvolva Alternativas: Encontre outras atividades que você goste e que possam ocupar seu tempo de
-                maneira produtiva. Exercícios físicos, hobbies criativos, e socialização com amigos e familiares podem
-                ajudar a reduzir o tempo que você dedica às apostas.<br><br>
-
-                Autocontrole e Conscientização: Mantenha um diário de suas apostas para monitorar seus comportamentos.
-                Esteja ciente de como, quando e por que você aposta, para identificar gatilhos e situações de risco.<br><br>
-
-                Procure Apoio: Não enfrente isso sozinho. Conversar com amigos e familiares sobre seu problema pode
-                aliviar o peso emocional. Considerar a ajuda de um terapeuta especializado em vícios pode ser
-                extremamente benéfico.<br><br>
-
-                Exclua-se de Plataformas de Apostas: Muitas plataformas de apostas oferecem opções de autoexclusão,
-                permitindo que você se proíba de fazer apostas por um período de tempo específico.<br><br>
-
-                Lidar com um vício em apostas não é fácil, mas com determinação e as estratégias certas, você pode
-                retomar o controle sobre sua vida. Lembre-se de que pedir ajuda não é um sinal de fraqueza, mas sim um
-                passo importante para a recuperação.<br><br>
-            </h5>
+            <h5 id="diagnostico" style="color: white;"></h5>
         </div>
     </div>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Grave</h2>
-        <div class="text-justify" class="conteudo">
-            <h5>
-                Se você está em um estágio grave de vício em apostas, os impactos em sua vida podem ser profundos e
-                debilitantes. É possível que você esteja enfrentando sérios problemas financeiros, conflitos familiares,
-                e uma deterioração em sua saúde mental e física.<br>
+    
+    <script>
+        window.onload = function() {
+            const contadorGirar = localStorage.getItem('contadorGirar') ? parseInt(localStorage.getItem('contadorGirar')) : 0;
+            const contadorResetar = localStorage.getItem('contadorResetar') ? parseInt(localStorage.getItem('contadorResetar')) : 0;
 
+            const diagnostico = document.getElementById("diagnostico");
+
+            diagnostico.innerHTML = `
+                <p>Quantidade de vezes que você girou: ${contadorGirar}</p>
+                <p>Quantidade de vezes que você resetou o saldo: ${contadorResetar}</p>
+            `;
+
+            let estado = '';
+
+            if (contadorGirar + contadorResetar >= 30) {
+                estado = 'grave';
+            } else if (contadorGirar + contadorResetar >= 50) {
+                estado = 'intermediário';
+            } else {
+                estado = 'leve';
+            }
+
+            let textoLeve = `
+                O vício em apostas pode começar de maneira sutil, muitas vezes passando despercebido até que se torne um problema maior. Se você percebe que está apostando mais do que deveria ou que isso está afetando outros aspectos da sua vida, é importante tomar medidas para controlar esse hábito.<br><br>
+                Apostar pode ser uma forma de entretenimento, mas deve ser feito com responsabilidade. Defina limites claros para o tempo e o dinheiro que você gasta com apostas. Mantenha um diário de suas apostas para ter uma visão clara de quanto está investindo e procure alternativas saudáveis para ocupar seu tempo, como hobbies, exercícios físicos ou atividades sociais.<br><br>
+                Lembre-se, é fundamental buscar apoio se sentir que está perdendo o controle. Conversar com amigos, familiares ou até mesmo procurar ajuda profissional pode ser um passo importante para garantir que o hábito de apostar não se torne um problema sério. Mantenha o equilíbrio e aposte com responsabilidade!<br><br>
+            `;
+            
+            let textoIntermediario = `
+                Se você está em um estágio intermediário de vício em apostas, pode ser que já tenha percebido algumas consequências negativas em sua vida. Talvez tenha começado a esconder suas apostas dos outros, gastando mais tempo e dinheiro do que pretendia, ou mesmo se endividando.<br><br>
+                Neste ponto, é crucial reconhecer que o vício em apostas é um problema sério que precisa ser abordado. Aqui estão algumas estratégias para ajudar a gerenciar esse vício:<br><br>
+                Estabeleça Limites Rígidos: Defina um orçamento claro para suas apostas e nunca ultrapasse esse limite. Use apenas dinheiro que você pode perder sem causar prejuízo financeiro.<br><br>
+                Desenvolva Alternativas: Encontre outras atividades que você goste e que possam ocupar seu tempo de maneira produtiva. Exercícios físicos, hobbies criativos, e socialização com amigos e familiares podem ajudar a reduzir o tempo que você dedica às apostas.<br><br>
+                Autocontrole e Conscientização: Mantenha um diário de suas apostas para monitorar seus comportamentos. Esteja ciente de como, quando e por que você aposta, para identificar gatilhos e situações de risco.<br><br>
+                Procure Apoio: Não enfrente isso sozinho. Conversar com amigos e familiares sobre seu problema pode aliviar o peso emocional. Considerar a ajuda de um terapeuta especializado em vícios pode ser extremamente benéfico.<br><br>
+                Exclua-se de Plataformas de Apostas: Muitas plataformas de apostas oferecem opções de autoexclusão, permitindo que você se proíba de fazer apostas por um período de tempo específico.<br><br>
+                Lidar com um vício em apostas não é fácil, mas com determinação e as estratégias certas, você pode retomar o controle sobre sua vida. Lembre-se de que pedir ajuda não é um sinal de fraqueza, mas sim um passo importante para a recuperação.<br><br>
+            `;
+            
+            let textoGrave = `
+                Se você está em um estágio grave de vício em apostas, os impactos em sua vida podem ser profundos e debilitantes. É possível que você esteja enfrentando sérios problemas financeiros, conflitos familiares, e uma deterioração em sua saúde mental e física.<br><br>
                 Neste ponto, é essencial tomar medidas imediatas e drásticas para combater o vício:<br><br>
+                <strong style="font-size: larger;">Procure Ajuda Profissional Imediatamente:</strong> Terapia especializada em vícios é vital. Psicólogos, psiquiatras, e conselheiros de vícios podem fornecer suporte e estratégias de tratamento adequadas. Em alguns casos, medicamentos podem ser prescritos para ajudar a controlar os impulsos.<br><br>
+                Participe de Grupos de Apoio: Grupos como Jogadores Anônimos (GA) oferecem um ambiente seguro para compartilhar experiências e obter apoio de pessoas que enfrentam desafios semelhantes. A comunidade pode ser uma fonte poderosa de motivação e solidariedade.<br><br>
+                Estabeleça Barreiras Financeiras: Peça a alguém de confiança para gerenciar suas finanças. Implemente medidas para limitar seu acesso ao dinheiro, como cancelar cartões de crédito ou estabelecer contas com restrições.<br><br>
+                Autoexclusão e Bloqueio de Sites de Apostas: Utilize programas e serviços que bloqueiem seu acesso a sites de apostas. Autoexclusão é uma ferramenta eficaz para impedir que você ceda à tentação de apostar.<br><br>
+                Desenvolva um Plano de Recuperação: Trabalhe com um profissional para criar um plano de recuperação personalizado. Este plano deve incluir metas a curto e longo prazo, estratégias de enfrentamento, e atividades alternativas para substituir as apostas.<br><br>
+                Reconstrua Relações e Rede de Suporte: O vício em apostas pode ter danificado relações pessoais. Dedique tempo para reparar esses relacionamentos e construir uma rede de apoio sólida.<br><br>
+                Lutar contra um vício em apostas em estágio grave é um desafio monumental, mas com determinação, apoio adequado, e um plano de ação estruturado, é possível superar. Nunca é tarde demais para buscar ajuda e fazer mudanças positivas em sua vida. Lembre-se de que cada passo, por menor que seja, é um avanço em direção à recuperação.<br><br>
+            `;
 
-                <strong style="font-size: larger;">Procure Ajuda Profissional Imediatamente:</strong> Terapia especializada em vícios é vital. Psicólogos,
-                psiquiatras, e conselheiros de vícios podem fornecer suporte e estratégias de tratamento adequadas. Em
-                alguns casos, medicamentos podem ser prescritos para ajudar a controlar os impulsos.<br><br>
+            if (estado === 'leve') {
+                diagnostico.innerHTML += `<h2 class="text-center mb-4">Leve</h2><h5>${textoLeve}</h5>`;
+            } else if (estado === 'intermediário') {
+                diagnostico.innerHTML += `<h2 class="text-center mb-4">Intermediário</h2><h5>${textoIntermediario}</h5>`;
+            } else if (estado === 'grave') {
+                diagnostico.innerHTML += `<h2 class="text-center mb-4">Grave</h2><h5>${textoGrave}</h5>`;
+            }
 
-                Participe de Grupos de Apoio: Grupos como Jogadores Anônimos (GA) oferecem um ambiente seguro para
-                compartilhar experiências e obter apoio de pessoas que enfrentam desafios semelhantes. A comunidade pode
-                ser uma fonte poderosa de motivação e solidariedade.<br><br>
-
-                Estabeleça Barreiras Financeiras: Peça a alguém de confiança para gerenciar suas finanças. Implemente
-                medidas para limitar seu acesso ao dinheiro, como cancelar cartões de crédito ou estabelecer contas com
-                restrições.<br><br>
-
-                Autoexclusão e Bloqueio de Sites de Apostas: Utilize programas e serviços que bloqueiem seu acesso a
-                sites de apostas. Autoexclusão é uma ferramenta eficaz para impedir que você ceda à tentação de apostar.<br><br>
-
-                Desenvolva um Plano de Recuperação: Trabalhe com um profissional para criar um plano de recuperação
-                personalizado. Este plano deve incluir metas a curto e longo prazo, estratégias de enfrentamento, e
-                atividades alternativas para substituir as apostas.<br><br>
-
-                Reconstrua Relações e Rede de Suporte: O vício em apostas pode ter danificado relações pessoais. Dedique
-                tempo para reparar esses relacionamentos e construir uma rede de apoio sólida.<br><br>
-
-                Lutar contra um vício em apostas em estágio grave é um desafio monumental, mas com determinação, apoio
-                adequado, e um plano de ação estruturado, é possível superar. Nunca é tarde demais para buscar ajuda e
-                fazer mudanças positivas em sua vida. Lembre-se de que cada passo, por menor que seja, é um avanço em
-                direção à recuperação.<br><br>
-            </h5>
-        </div>
-    </div>
+            // Evento para resetar os contadores quando o usuário sai da página
+            window.addEventListener('beforeunload', function () {
+                localStorage.setItem('contadorGirar', 0);
+                localStorage.setItem('contadorResetar', 0);
+            });
+        };
+    </script>
     <div class="container">
         <div class="row">
             <div id="msg" class="col-sm-10 offset-sm-1 ">
